@@ -10,6 +10,22 @@ public class Student {
 	private double markObtainedInScience;
 	private String grade;
 
+	
+	
+	
+	public Student(String name, int age, int rollNumber, double markObtainedInEnglish, double markObtainedInMaths,
+			double markObtainedInScience, String grade) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.rollNumber = rollNumber;
+		this.markObtainedInEnglish = markObtainedInEnglish;
+		this.markObtainedInMaths = markObtainedInMaths;
+		this.markObtainedInScience = markObtainedInScience;
+		this.grade = grade;
+	}
+	
+
 	public String getName() {
 		return name;
 	}
