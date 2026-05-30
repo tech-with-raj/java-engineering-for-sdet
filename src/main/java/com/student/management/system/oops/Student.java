@@ -1,5 +1,7 @@
 package com.student.management.system.oops;
 
+import java.util.Objects;
+
 public class Student {
 
 	private String name;
@@ -126,6 +128,35 @@ public class Student {
 		double totalMarks = markObtainedInEnglish + markObtainedInMaths + markObtainedInScience;
 
 		System.out.println("Total Mark Obtained: " + totalMarks);
+	}
+
+
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, grade, markObtainedInEnglish, markObtainedInMaths, markObtainedInScience, name,
+				rollNumber);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return age == other.age && Objects.equals(grade, other.grade)
+				&& Double.doubleToLongBits(markObtainedInEnglish) == Double
+						.doubleToLongBits(other.markObtainedInEnglish)
+				&& Double.doubleToLongBits(markObtainedInMaths) == Double.doubleToLongBits(other.markObtainedInMaths)
+				&& Double.doubleToLongBits(markObtainedInScience) == Double
+						.doubleToLongBits(other.markObtainedInScience)
+				&& Objects.equals(name, other.name) && rollNumber == other.rollNumber;
 	}
 
 
