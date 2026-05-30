@@ -9,9 +9,7 @@ public class Runner {
 		s1.setName("Rajasekar");
 		s1.setAge(21);
 		
-		
-		System.out.println(s1.getName());
-		System.out.println(s1.getAge());
+		System.out.println(s1);
 		
 
 	}

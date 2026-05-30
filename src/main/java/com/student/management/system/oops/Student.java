@@ -128,4 +128,14 @@ public class Student {
 		System.out.println("Total Mark Obtained: " + totalMarks);
 	}
 
+
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", age=" + age + ", rollNumber=" + rollNumber + ", markObtainedInEnglish="
+				+ markObtainedInEnglish + ", markObtainedInMaths=" + markObtainedInMaths + ", markObtainedInScience="
+				+ markObtainedInScience + ", grade=" + grade + "]";
+	}
+
+	
+	
 }
