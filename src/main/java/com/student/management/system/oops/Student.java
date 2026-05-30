@@ -2,6 +2,8 @@ package com.student.management.system.oops;
 
 import java.util.Objects;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
+
 public class Student {
 
 	private String name;
@@ -11,22 +13,22 @@ public class Student {
 	private double markObtainedInMaths;
 	private double markObtainedInScience;
 	private String grade;
+	private double totalMarks;
+	private double percentage;
 
-	
-	
-	
 	public Student(String name, int age, int rollNumber, double markObtainedInEnglish, double markObtainedInMaths,
-			double markObtainedInScience, String grade) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.rollNumber = rollNumber;
-		this.markObtainedInEnglish = markObtainedInEnglish;
-		this.markObtainedInMaths = markObtainedInMaths;
-		this.markObtainedInScience = markObtainedInScience;
-		this.grade = grade;
+			double markObtainedInScience) {
+
+		if (validateAge(age) && validateRollNumber(rollNumber) && validateMarks(markObtainedInEnglish)
+				&& validateMarks(markObtainedInMaths) && validateMarks(markObtainedInScience)) {
+			this.name = name;
+			this.age = age;
+			this.rollNumber = rollNumber;
+			this.markObtainedInEnglish = markObtainedInEnglish;
+			this.markObtainedInMaths = markObtainedInMaths;
+			this.markObtainedInScience = markObtainedInScience;
+		}
 	}
-	
 
 	public String getName() {
 		return name;
@@ -119,27 +121,86 @@ public class Student {
 		return grade;
 	}
 
-	public void setGrade(String grade) {
-		this.grade = grade;
+	public double getTotalMarks() {
+		return totalMarks;
+	}
+
+	public double getPercentage() {
+		return percentage;
 	}
 
 	public void calculateTotalMarks() {
 
-		double totalMarks = markObtainedInEnglish + markObtainedInMaths + markObtainedInScience;
+		totalMarks = markObtainedInEnglish + markObtainedInMaths + markObtainedInScience;
 
-		System.out.println("Total Mark Obtained: " + totalMarks);
 	}
 
+	public void calculatePercentage() {
 
-	
-	
-	
+		percentage = totalMarks / 3;
+
+	}
+
+	public void calculateGrade() {
+
+		if (percentage == 0) {
+
+			grade = "Cannot be calculated";
+		} else {
+
+			if (percentage >= 95) {
+				grade = "A+";
+			} else if (percentage >= 90) {
+				grade = "A";
+			} else if (percentage >= 85) {
+				grade = "B+";
+			} else if (percentage >= 80) {
+				grade = "B";
+			} else if (percentage >= 75) {
+				grade = "C+";
+			} else if (percentage >= 70) {
+				grade = "C+";
+			} else {
+				grade = "F";
+			}
+		}
+	}
+
+	public boolean validateAge(int age) {
+
+		if (age >= 10 && age <= 25) {
+			return true;
+		} else {
+			System.err.println("Invalid age for student!!");
+			return false;
+		}
+	}
+
+	public boolean validateRollNumber(int rollNumber) {
+
+		if (rollNumber > 0) {
+			return true;
+		} else {
+			System.err.println("Invalid Roll Number for student!!");
+			return false;
+		}
+	}
+
+	public boolean validateMarks(Double mark) {
+
+		if (mark >= 0 && mark <= 100) {
+			return true;
+		} else {
+			System.err.println("Invalid marks for student!!");
+			return false;
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(age, grade, markObtainedInEnglish, markObtainedInMaths, markObtainedInScience, name,
-				rollNumber);
+				percentage, rollNumber, totalMarks);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -156,17 +217,18 @@ public class Student {
 				&& Double.doubleToLongBits(markObtainedInMaths) == Double.doubleToLongBits(other.markObtainedInMaths)
 				&& Double.doubleToLongBits(markObtainedInScience) == Double
 						.doubleToLongBits(other.markObtainedInScience)
-				&& Objects.equals(name, other.name) && rollNumber == other.rollNumber;
+				&& Objects.equals(name, other.name)
+				&& Double.doubleToLongBits(percentage) == Double.doubleToLongBits(other.percentage)
+				&& rollNumber == other.rollNumber
+				&& Double.doubleToLongBits(totalMarks) == Double.doubleToLongBits(other.totalMarks);
 	}
-
 
 	@Override
 	public String toString() {
 		return "Student [name=" + name + ", age=" + age + ", rollNumber=" + rollNumber + ", markObtainedInEnglish="
 				+ markObtainedInEnglish + ", markObtainedInMaths=" + markObtainedInMaths + ", markObtainedInScience="
-				+ markObtainedInScience + ", grade=" + grade + "]";
+				+ markObtainedInScience + ", grade=" + grade + ", totalMarks=" + totalMarks + ", percentage="
+				+ percentage + "]";
 	}
 
-	
-	
 }
