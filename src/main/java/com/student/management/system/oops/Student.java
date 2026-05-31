@@ -2,12 +2,12 @@ package com.student.management.system.oops;
 
 import java.util.Objects;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
-
 public class Student {
 
 	private String name;
 	private int age;
+	private String contactNumber;
+	private String address;
 	private int rollNumber;
 	private double markObtainedInEnglish;
 	private double markObtainedInMaths;
@@ -16,17 +16,21 @@ public class Student {
 	private double totalMarks;
 	private double percentage;
 
-	public Student(String name, int age, int rollNumber, double markObtainedInEnglish, double markObtainedInMaths,
+	public Student(String name, int age, String contactNumber, String address, int rollNumber, double markObtainedInEnglish, double markObtainedInMaths,
 			double markObtainedInScience) {
 
 		if (validateAge(age) && validateRollNumber(rollNumber) && validateMarks(markObtainedInEnglish)
-				&& validateMarks(markObtainedInMaths) && validateMarks(markObtainedInScience)) {
+				&& validateMarks(markObtainedInMaths) && validateMarks(markObtainedInScience)
+				&& validateContactNumber(contactNumber) && validateAddress(address)) {
 			this.name = name;
 			this.age = age;
+			this.contactNumber = contactNumber;
+			this.address = address;
 			this.rollNumber = rollNumber;
 			this.markObtainedInEnglish = markObtainedInEnglish;
 			this.markObtainedInMaths = markObtainedInMaths;
 			this.markObtainedInScience = markObtainedInScience;
+			
 		}
 	}
 
@@ -49,6 +53,26 @@ public class Student {
 			this.age = age;
 		} else {
 			System.out.println("Age is not valid");
+		}
+	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		if (validateContactNumber(contactNumber)) {
+			this.contactNumber = contactNumber;
+		}
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		if (validateAddress(address)) {
+			this.address = address;
 		}
 	}
 
@@ -196,10 +220,31 @@ public class Student {
 		}
 	}
 
+	private boolean validateAddress(String address) {
+		if (address.isEmpty()) {
+			System.err.println("Invalid address for student!!");
+			return false;
+		} else {
+
+			return true;
+
+		}
+	}
+
+	private boolean validateContactNumber(String contactNumber) {
+
+		if (contactNumber != null && contactNumber.matches("\\d{10}")) {
+			return true;
+		} else {
+			System.err.println("Invalid contact number for student!!");
+			return false;
+		}
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(age, grade, markObtainedInEnglish, markObtainedInMaths, markObtainedInScience, name,
-				percentage, rollNumber, totalMarks);
+		return Objects.hash(address, age, contactNumber, grade, markObtainedInEnglish, markObtainedInMaths,
+				markObtainedInScience, name, percentage, rollNumber, totalMarks);
 	}
 
 	@Override
@@ -211,7 +256,8 @@ public class Student {
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		return age == other.age && Objects.equals(grade, other.grade)
+		return Objects.equals(address, other.address) && age == other.age && contactNumber == other.contactNumber
+				&& Objects.equals(grade, other.grade)
 				&& Double.doubleToLongBits(markObtainedInEnglish) == Double
 						.doubleToLongBits(other.markObtainedInEnglish)
 				&& Double.doubleToLongBits(markObtainedInMaths) == Double.doubleToLongBits(other.markObtainedInMaths)
@@ -222,13 +268,36 @@ public class Student {
 				&& rollNumber == other.rollNumber
 				&& Double.doubleToLongBits(totalMarks) == Double.doubleToLongBits(other.totalMarks);
 	}
+	
+	public void displayStudentInfo() {
+
+	    System.out.println("------Student Information------");
+	    System.out.println("NAME: " + name);
+	    System.out.println("AGE: " + age);
+	    System.out.println("CONTACT NUMBER: " + contactNumber);
+	    System.out.println("ADDRESS: " + address);
+
+	    System.out.println("ENGLISH MARKS: " + markObtainedInEnglish);
+	    System.out.println("MATHS MARKS: " + markObtainedInMaths);
+	    System.out.println("SCIENCE MARKS: " + markObtainedInScience);
+
+	    System.out.println("---------------------------------------");
+
+	    System.out.println("TOTAL MARKS: " + totalMarks);
+	    System.out.println("PERCENTAGE: " + percentage + "%");
+	    System.out.println("GRADE: " + grade);
+	    
+	    System.out.println("===========================================");
+	}
 
 	@Override
 	public String toString() {
-		return "Student [name=" + name + ", age=" + age + ", rollNumber=" + rollNumber + ", markObtainedInEnglish="
-				+ markObtainedInEnglish + ", markObtainedInMaths=" + markObtainedInMaths + ", markObtainedInScience="
-				+ markObtainedInScience + ", grade=" + grade + ", totalMarks=" + totalMarks + ", percentage="
-				+ percentage + "]";
+		return "Student [name=" + name + ", age=" + age + ", contactNumber=" + contactNumber + ", address=" + address
+				+ ", rollNumber=" + rollNumber + ", markObtainedInEnglish=" + markObtainedInEnglish
+				+ ", markObtainedInMaths=" + markObtainedInMaths + ", markObtainedInScience=" + markObtainedInScience
+				+ ", grade=" + grade + ", totalMarks=" + totalMarks + ", percentage=" + percentage + "]";
 	}
+
+	
 
 }
