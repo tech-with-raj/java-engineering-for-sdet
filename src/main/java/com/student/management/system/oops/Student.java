@@ -2,12 +2,8 @@ package com.student.management.system.oops;
 
 import java.util.Objects;
 
-public class Student {
+public class Student extends Person {
 
-	private String name;
-	private int age;
-	private String contactNumber;
-	private String address;
 	private int rollNumber;
 	private double markObtainedInEnglish;
 	private double markObtainedInMaths;
@@ -16,16 +12,13 @@ public class Student {
 	private double totalMarks;
 	private double percentage;
 
-	public Student(String name, int age, String contactNumber, String address, int rollNumber, double markObtainedInEnglish, double markObtainedInMaths,
+	public Student(String name,int age,String contactNumber, String address,int rollNumber, double markObtainedInEnglish, double markObtainedInMaths,
 			double markObtainedInScience) {
-
+		super(name, age, contactNumber, address);
 		if (validateAge(age) && validateRollNumber(rollNumber) && validateMarks(markObtainedInEnglish)
 				&& validateMarks(markObtainedInMaths) && validateMarks(markObtainedInScience)
 				&& validateContactNumber(contactNumber) && validateAddress(address)) {
-			this.name = name;
-			this.age = age;
-			this.contactNumber = contactNumber;
-			this.address = address;
+
 			this.rollNumber = rollNumber;
 			this.markObtainedInEnglish = markObtainedInEnglish;
 			this.markObtainedInMaths = markObtainedInMaths;
@@ -268,26 +261,26 @@ public class Student {
 				&& rollNumber == other.rollNumber
 				&& Double.doubleToLongBits(totalMarks) == Double.doubleToLongBits(other.totalMarks);
 	}
-	
+
 	public void displayStudentInfo() {
 
-	    System.out.println("------Student Information------");
-	    System.out.println("NAME: " + name);
-	    System.out.println("AGE: " + age);
-	    System.out.println("CONTACT NUMBER: " + contactNumber);
-	    System.out.println("ADDRESS: " + address);
+		System.out.println("------Student Information------");
+		System.out.println("NAME: " + name);
+		System.out.println("AGE: " + age);
+		System.out.println("CONTACT NUMBER: " + contactNumber);
+		System.out.println("ADDRESS: " + address);
 
-	    System.out.println("ENGLISH MARKS: " + markObtainedInEnglish);
-	    System.out.println("MATHS MARKS: " + markObtainedInMaths);
-	    System.out.println("SCIENCE MARKS: " + markObtainedInScience);
+		System.out.println("ENGLISH MARKS: " + markObtainedInEnglish);
+		System.out.println("MATHS MARKS: " + markObtainedInMaths);
+		System.out.println("SCIENCE MARKS: " + markObtainedInScience);
 
-	    System.out.println("---------------------------------------");
+		System.out.println("---------------------------------------");
 
-	    System.out.println("TOTAL MARKS: " + totalMarks);
-	    System.out.println("PERCENTAGE: " + percentage + "%");
-	    System.out.println("GRADE: " + grade);
-	    
-	    System.out.println("===========================================");
+		System.out.println("TOTAL MARKS: " + totalMarks);
+		System.out.println("PERCENTAGE: " + percentage + "%");
+		System.out.println("GRADE: " + grade);
+
+		System.out.println("===========================================");
 	}
 
 	@Override
@@ -297,7 +290,5 @@ public class Student {
 				+ ", markObtainedInMaths=" + markObtainedInMaths + ", markObtainedInScience=" + markObtainedInScience
 				+ ", grade=" + grade + ", totalMarks=" + totalMarks + ", percentage=" + percentage + "]";
 	}
-
-	
 
 }

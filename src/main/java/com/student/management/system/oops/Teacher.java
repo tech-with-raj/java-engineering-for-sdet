@@ -1,28 +1,20 @@
 package com.student.management.system.oops;
 
-public class Teacher {
+public class Teacher extends Person {
 
-	private String name;
-	private int age;
-	private String contactNumber;
-	private String address;
 	private String empID;
 	private String subject;
 	private int yearsOfExperience;
 	private double salary;
-	
-	private final static double BASE_SALARY= 30000;
+
+	private final static double BASE_SALARY = 30000;
 	private final static double EXPERIENCE_BONUS = 2000;
 
 	public Teacher(String name, int age, String contactNumber, String address, String empID, String subject,
 			int yearsOfExperience) {
-
+		super(name, age, contactNumber, address);
 		if (validateAge(age) && validateContactNumber(contactNumber) && validateAddress(address) && validateEmpID(empID)
 				&& validateSubject(subject) && validateYearsOfExperience(yearsOfExperience)) {
-			this.name = name;
-			this.age = age;
-			this.contactNumber = contactNumber;
-			this.address = address;
 			this.empID = empID;
 			this.subject = subject;
 			this.yearsOfExperience = yearsOfExperience;
@@ -101,42 +93,6 @@ public class Teacher {
 
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		if (validateAge(age)) {
-			this.age = age;
-		}
-	}
-
-	public String getContactNumber() {
-		return contactNumber;
-	}
-
-	public void setContactNumber(String contactNumber) {
-		if (validateContactNumber(contactNumber))
-			this.contactNumber = contactNumber;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		if (validateAddress(address))
-			this.address = address;
-	}
-
 	public String getEmpID() {
 		return empID;
 	}
@@ -167,26 +123,27 @@ public class Teacher {
 	public double getSalary() {
 		return salary;
 	}
-	
+
 	public void displayTeacherInformation() {
 
-	    System.out.println("------------Teacher Info----------------");
-	    System.out.println("NAME: " + name);
-	    System.out.println("AGE: " + age);
-	    System.out.println("EMP -ID: " + empID);
-	    System.out.println("CONTACT NUMBER: " + contactNumber);
-	    System.out.println("ADDRESS: " + address);
-	    System.out.println("SUBJECT: " + subject);
-	    System.out.println("YEARS OF EXP: " + yearsOfExperience);
-	    System.out.println("SALARY: $" + salary);
-	    System.out.println("========================================");
+		System.out.println("------------Teacher Info----------------");
+		System.out.println("NAME: " + name);
+		System.out.println("AGE: " + age);
+		System.out.println("EMP-ID: " + empID);
+		System.out.println("CONTACT NUMBER: " + contactNumber);
+		System.out.println("ADDRESS: " + address);
+		System.out.println("SUBJECT: " + subject);
+		System.out.println("YEARS OF EXP: " + yearsOfExperience);
+		System.out.println("SALARY: $" + salary);
+		System.out.println("========================================");
 	}
 
 	@Override
 	public String toString() {
-		return "Teacher [name=" + name + ", age=" + age + ", contactNumber=" + contactNumber + ", address=" + address
-				+ ", empID=" + empID + ", subject=" + subject + ", yearsOfExperience=" + yearsOfExperience + ", salary="
-				+ salary + "]";
+		return "Teacher [empID=" + empID + ", subject=" + subject + ", yearsOfExperience=" + yearsOfExperience
+				+ ", salary=" + salary + "]";
 	}
+
+	
 
 }
