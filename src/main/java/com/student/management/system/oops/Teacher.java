@@ -137,6 +137,36 @@ public class Teacher extends Person {
 		System.out.println("SALARY: $" + salary);
 		System.out.println("========================================");
 	}
+	
+	public boolean updateInformation(String newAddress, String newContactNumber) {
+
+		// HR Approval
+		System.out.println("Requesting HR Approval");
+		boolean hrApprovalStatus = hrApproval();
+
+		if (hrApprovalStatus) {
+
+			// then update Person.address with newAddress and Person.contactNumber with
+			// newContactNumber
+
+			if (super.updateInformation(newAddress, newContactNumber)) {
+				System.out.println("Notifying the teacher that info is updated...");
+				return true;
+			} else {
+				System.err.println("No approval from hr...");
+				return false;
+			}
+		}
+		
+		return false;
+	}
+
+	private boolean hrApproval() {
+		System.out.println("HR has approved the request");
+		return true; // dummy
+	}
+
+	
 
 	@Override
 	public String toString() {

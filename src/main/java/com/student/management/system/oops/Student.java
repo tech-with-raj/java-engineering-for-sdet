@@ -12,8 +12,8 @@ public class Student extends Person {
 	private double totalMarks;
 	private double percentage;
 
-	public Student(String name,int age,String contactNumber, String address,int rollNumber, double markObtainedInEnglish, double markObtainedInMaths,
-			double markObtainedInScience) {
+	public Student(String name, int age, String contactNumber, String address, int rollNumber,
+			double markObtainedInEnglish, double markObtainedInMaths, double markObtainedInScience) {
 		super(name, age, contactNumber, address);
 		if (validateAge(age) && validateRollNumber(rollNumber) && validateMarks(markObtainedInEnglish)
 				&& validateMarks(markObtainedInMaths) && validateMarks(markObtainedInScience)
@@ -23,7 +23,7 @@ public class Student extends Person {
 			this.markObtainedInEnglish = markObtainedInEnglish;
 			this.markObtainedInMaths = markObtainedInMaths;
 			this.markObtainedInScience = markObtainedInScience;
-			
+
 		}
 	}
 
@@ -213,7 +213,7 @@ public class Student extends Person {
 		}
 	}
 
-	private boolean validateAddress(String address) {
+	public boolean validateAddress(String address) {
 		if (address.isEmpty()) {
 			System.err.println("Invalid address for student!!");
 			return false;
@@ -224,7 +224,7 @@ public class Student extends Person {
 		}
 	}
 
-	private boolean validateContactNumber(String contactNumber) {
+	public boolean validateContactNumber(String contactNumber) {
 
 		if (contactNumber != null && contactNumber.matches("\\d{10}")) {
 			return true;
@@ -289,6 +289,33 @@ public class Student extends Person {
 				+ ", rollNumber=" + rollNumber + ", markObtainedInEnglish=" + markObtainedInEnglish
 				+ ", markObtainedInMaths=" + markObtainedInMaths + ", markObtainedInScience=" + markObtainedInScience
 				+ ", grade=" + grade + ", totalMarks=" + totalMarks + ", percentage=" + percentage + "]";
+	}
+
+	public boolean updateInformation(String newAddress, String newContactNumber) {
+
+		// Parent Approval
+		System.out.println("Requesting Parent Approval");
+		boolean parentApprovalStatus = parentApproval();
+
+		if (parentApprovalStatus) {
+
+			// then update Person.address with newAddress and Person.contactNumber with
+			// newContactNumber
+
+			if (super.updateInformation(newAddress, newContactNumber)) {
+				System.out.println("Notifying the parent...");
+				return true;
+			} else {
+				System.err.println("No approval from parent...");
+				return false;
+			}
+		}
+		
+		return false;
+	}
+
+	private boolean parentApproval() {
+		return true; // dummy
 	}
 
 }

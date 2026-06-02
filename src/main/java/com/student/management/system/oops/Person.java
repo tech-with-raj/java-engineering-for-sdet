@@ -8,10 +8,13 @@ public class Person {
 	protected String address;
 
 	public Person(String name, int age, String contactNumber, String address) {
-		this.name = name;
-		this.age = age;
-		this.contactNumber = contactNumber;
-		this.address = address;
+
+		if (validateAddress(address) && validateContactNumber(contactNumber)) {
+			this.name = name;
+			this.age = age;
+			this.contactNumber = contactNumber;
+			this.address = address;
+		}
 	}
 
 	public String getName() {
@@ -35,7 +38,8 @@ public class Person {
 	}
 
 	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
+		if (validateContactNumber(contactNumber))
+			this.contactNumber = contactNumber;
 	}
 
 	public String getAddress() {
@@ -43,7 +47,47 @@ public class Person {
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
+		if (validateAddress(address))
+			this.address = address;
+	}
+
+	public boolean validateContactNumber(String contactNumber) {
+
+		if (contactNumber.matches("\\d{10}")) {
+
+			return true;
+		} else {
+			System.err.println("Invalid contact number");
+			return false;
+		}
+
+	}
+
+	public boolean validateAddress(String address) {
+
+		if (!(address.isEmpty() || address == null)) {
+
+			return true;
+		} else {
+			System.err.println("Invalid person address");
+			return false;
+		}
+
+	}
+
+	protected boolean updateInformation(String newAddress, String newContactNumber) {
+
+		if (validateAddress(newAddress) && validateContactNumber(newContactNumber)) {
+
+			address = newAddress;
+			contactNumber = newContactNumber;
+			System.out.println("Updated Address and Contact number Info...");
+			return true;
+
+		}else {
+			return false;
+		}
+
 	}
 
 	@Override
