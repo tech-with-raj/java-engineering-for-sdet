@@ -5,17 +5,23 @@ public class Runner {
 	public static void main(String[] args) {
 
 		Person s1 = new Student("Raj", 19, "9025634088", "No:102, Green's road, Chennai", 21, 90, 90, 89);
-		((Student) s1).calculateTotalMarks();
-		((Student) s1).calculatePercentage();
-		((Student) s1).calculateGrade();
-		((Student) s1).displayStudentInfo();
-		s1.updateInformation("Bangalore", "9025394077");
-		((Student) s1).displayStudentInfo();
+//		((Student) s1).calculateTotalMarks();
+//		((Student) s1).calculatePercentage();
+//		((Student) s1).calculateGrade();
+//		((Student) s1).displayStudentInfo();
+//		s1.updateInformation("9025394099",true);
+//		((Student) s1).displayStudentInfo();
 
 		Person t1 = new Teacher("Durai", 40, "9025394099", "No:5, ECR, Chennai", "T109", "Maths", 15);
-		((Teacher) t1).displayTeacherInformation();
-		((Teacher) t1).updateInformation("Bangalore", "9025394077");
-		((Teacher) t1).displayTeacherInformation();
+//		((Teacher) t1).displayTeacherInformation();
+//		t1.updateInformation("9025394077",true);
+//		((Teacher) t1).displayTeacherInformation();
+
+		System.out.println("Total no of people in the school "+Person.getTotalPersonCount());
+		
+		System.out.println("Total no of student in the school "+Student.getTotalStudentCount());
+		
+		System.out.println("Total no of teacher in the school "+Teacher.getTotalTeacherCount());
 
 	}
 

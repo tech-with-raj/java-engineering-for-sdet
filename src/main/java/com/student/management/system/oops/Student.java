@@ -11,6 +11,7 @@ public class Student extends Person {
 	private String grade;
 	private double totalMarks;
 	private double percentage;
+	private static int studentCount=0;
 
 	public Student(String name, int age, String contactNumber, String address, int rollNumber,
 			double markObtainedInEnglish, double markObtainedInMaths, double markObtainedInScience) {
@@ -23,7 +24,7 @@ public class Student extends Person {
 			this.markObtainedInEnglish = markObtainedInEnglish;
 			this.markObtainedInMaths = markObtainedInMaths;
 			this.markObtainedInScience = markObtainedInScience;
-
+			studentCount++;
 		}
 	}
 
@@ -310,12 +311,62 @@ public class Student extends Person {
 				return false;
 			}
 		}
-		
+
+		return false;
+	}
+
+	public boolean updateInformation(String newAddress) {
+
+		// Parent Approval
+		System.out.println("Requesting Parent Approval");
+		boolean parentApprovalStatus = parentApproval();
+
+		if (parentApprovalStatus) {
+
+			// then update Person.address with newAddress and Person.contactNumber with
+			// newContactNumber
+
+			if (super.updateInformation(newAddress)) {
+				System.out.println("Notifying the parent...");
+				return true;
+			} else {
+				System.err.println("No approval from parent...");
+				return false;
+			}
+		}
+
+		return false;
+	}
+
+	public boolean updateInformation(String newContactNumber, boolean update) {
+
+		// Parent Approval
+		System.out.println("Requesting Parent Approval");
+		boolean parentApprovalStatus = parentApproval();
+
+		if (parentApprovalStatus) {
+
+			// then update Person.address with newAddress and Person.contactNumber with
+			// newContactNumber
+
+			if (super.updateInformation(newContactNumber, true)) {
+				System.out.println("Notifying the parent...");
+				return true;
+			} else {
+				System.err.println("No approval from parent...");
+				return false;
+			}
+		}
+
 		return false;
 	}
 
 	private boolean parentApproval() {
 		return true; // dummy
+	}
+
+	public static int getTotalStudentCount() {
+		return studentCount;
 	}
 
 }

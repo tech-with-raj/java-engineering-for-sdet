@@ -6,6 +6,7 @@ public class Person {
 	protected int age;
 	protected String contactNumber;
 	protected String address;
+	private static int personCount=0;
 
 	public Person(String name, int age, String contactNumber, String address) {
 
@@ -14,8 +15,10 @@ public class Person {
 			this.age = age;
 			this.contactNumber = contactNumber;
 			this.address = address;
+			personCount++;
 		}
-	}
+
+			}
 
 	public String getName() {
 		return name;
@@ -84,10 +87,39 @@ public class Person {
 			System.out.println("Updated Address and Contact number Info...");
 			return true;
 
-		}else {
+		} else {
 			return false;
 		}
 
+	}
+
+	public boolean updateInformation(String newAddress) {
+		if (validateAddress(newAddress)) {
+
+			address = newAddress;
+			System.out.println("Updated Address Info...");
+			return true;
+
+		} else {
+			return false;
+		}
+	}
+
+	public boolean updateInformation(String newContactNumber, boolean update) {
+		if (validateContactNumber(newContactNumber)) {
+
+			contactNumber = newContactNumber;
+			System.out.println("Updated Contact Info...");
+			return true;
+
+		} else {
+			return false;
+		}
+	}
+
+	public static int getTotalPersonCount() {
+
+		return personCount;
 	}
 
 	@Override
@@ -95,7 +127,5 @@ public class Person {
 		return "Person [name=" + name + ", age=" + age + ", contactNumber=" + contactNumber + ", address=" + address
 				+ "]";
 	}
-	
-	
 
 }

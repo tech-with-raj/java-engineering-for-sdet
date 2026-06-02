@@ -9,6 +9,8 @@ public class Teacher extends Person {
 
 	private final static double BASE_SALARY = 30000;
 	private final static double EXPERIENCE_BONUS = 2000;
+	
+	private static int teacherCount=0;
 
 	public Teacher(String name, int age, String contactNumber, String address, String empID, String subject,
 			int yearsOfExperience) {
@@ -19,7 +21,7 @@ public class Teacher extends Person {
 			this.subject = subject;
 			this.yearsOfExperience = yearsOfExperience;
 			calculateSalary();
-
+            teacherCount++;
 		}
 	}
 
@@ -160,12 +162,58 @@ public class Teacher extends Person {
 		
 		return false;
 	}
+	
+	
+    public boolean updateInformation(String newAddress) {
+	
+    	System.out.println("Requesting HR Approval");
+		boolean hrApprovalStatus = hrApproval();
+
+		if (hrApprovalStatus) {
+
+			if (super.updateInformation(newAddress)) {
+				System.out.println("Notifying the teacher that info is updated...");
+				return true;
+			} else {
+				System.err.println("No approval from hr...");
+				return false;
+			}
+		}
+		
+		return false;
+	}
+    	
+    
+    public boolean updateInformation(String newContactNumber, boolean update) {
+    	
+    	System.out.println("Requesting HR Approval");
+    	boolean hrApprovalStatus = hrApproval();
+    	
+    	if (hrApprovalStatus) {
+    		
+    		if (super.updateInformation(newContactNumber, true)) {
+    			System.out.println("Notifying the teacher that info is updated...");
+    			return true;
+    		} else {
+    			System.err.println("No approval from hr...");
+    			return false;
+    		}
+    	}
+    	
+    	return false;
+    }
+    
+	
 
 	private boolean hrApproval() {
 		System.out.println("HR has approved the request");
 		return true; // dummy
 	}
 
+	public static int getTotalTeacherCount() {
+		return teacherCount;
+	}
+	
 	
 
 	@Override
