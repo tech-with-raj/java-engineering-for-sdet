@@ -2,7 +2,7 @@ package com.student.management.system.oops;
 
 import java.util.Objects;
 
-public class Student extends Person {
+public final class Student extends Person {
 
 	private final int rollNumber;
 	private final double markObtainedInEnglish;
@@ -68,7 +68,7 @@ public class Student extends Person {
 		return percentage;
 	}
 
-	public double calculateTotalMarks() {
+	public final double calculateTotalMarks() {
 
 		double totalMarks = markObtainedInEnglish + markObtainedInMaths + markObtainedInScience;
 
@@ -76,14 +76,14 @@ public class Student extends Person {
 
 	}
 
-	public double calculatePercentage() {
+	public final double calculatePercentage() {
 
 		double percentage = totalMarks / 3;
 		return percentage;
 
 	}
 
-	public String calculateGrade() {
+	public final String calculateGrade() {
 		String grade;
 		if (percentage == 0) {
 
@@ -285,7 +285,7 @@ public class Student extends Person {
 
 		}
 
-		public boolean validateAge(int age) {
+		private boolean validateAge(int age) {
 
 			if (age >= 10 && age <= 25) {
 				return true;
@@ -295,7 +295,7 @@ public class Student extends Person {
 			}
 		}
 
-		public boolean validateContactNumber(String contactNumber) {
+		private boolean validateContactNumber(String contactNumber) {
 
 			if (contactNumber != null && contactNumber.matches("\\d{10}")) {
 				return true;
@@ -305,7 +305,7 @@ public class Student extends Person {
 			}
 		}
 
-		public boolean validateAddress(String address) {
+		private boolean validateAddress(String address) {
 			if (address.isEmpty()) {
 				System.err.println("Invalid address for student!!");
 				return false;
@@ -316,7 +316,7 @@ public class Student extends Person {
 			}
 		}
 
-		public boolean validateRollNumber(int rollNumber) {
+		private boolean validateRollNumber(int rollNumber) {
 
 			if (rollNumber > 0) {
 				return true;
@@ -326,7 +326,7 @@ public class Student extends Person {
 			}
 		}
 
-		public boolean validateMarks(Double mark) {
+		private boolean validateMarks(Double mark) {
 
 			if (mark >= 0 && mark <= 100) {
 				return true;

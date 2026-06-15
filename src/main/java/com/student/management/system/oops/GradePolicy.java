@@ -1,56 +1,48 @@
 package com.student.management.system.oops;
 
-public class GradePolicy {
+public final class GradePolicy {
 
-    private static int aPlus;
-    private static int aGrade;
-    private static int bPlus;
-    private static int bGrade;
-    private static int cPlus;
-    private static int cGrade;
-    private static int dGrade;
-    private static int passingMarks;
-
-    static {
-        System.out.println("Grade Policy Loaded in the System");
-
-        aPlus = 95;
-        aGrade = 90;
-        bPlus = 85;
-        bGrade = 80;
-        cPlus = 75;
-        cGrade = 70;
-        dGrade = 60;
-        passingMarks = 33;
-    }
+    private static final int A_PLUS = 95;
+    private static final int A_GRADE = 90;
+    private static final int B_PLUS = 85;
+    private static final int B_GRADE = 80;
+    private static final int C_PLUS = 75;
+    private static final int C_GRADE = 70;
+    private static final int D_GRADE = 60;
+	private static final int PASSING_MARKS = 33;
     
+    
+    private GradePolicy() {
+		
+	}
+
     public static String calculateGrade(double percentage) {
 
-        if (percentage >= aPlus) {
+        if (percentage >= A_PLUS) {
             return "A+";
         }
 
-        if (percentage >= aGrade) {
+        if (percentage >= A_GRADE) {
             return "A";
         }
 
-        if (percentage >= bPlus) {
+        if (percentage >= B_PLUS) {
             return "B+";
         }
 
-        if (percentage >= bGrade) {
+        if (percentage >= B_GRADE) {
             return "B";
         }
 
-        if (percentage >= cPlus) {
+        if (percentage >= C_PLUS) {
             return "C+";
         }
 
-        if (percentage >= cGrade) {
+        if (percentage >= C_GRADE) {
             return "C";
         }
 
-        if (percentage >= dGrade) {
+        if (percentage >= D_GRADE) {
             return "D";
         }
 
