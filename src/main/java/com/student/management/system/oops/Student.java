@@ -2,15 +2,15 @@ package com.student.management.system.oops;
 
 import java.util.Objects;
 
-public final class Student extends Person {
+public abstract class Student extends Person {
 
 	private final int rollNumber;
 	private final double markObtainedInEnglish;
 	private final double markObtainedInMaths;
 	private final double markObtainedInScience;
-	private final double totalMarks;
-	private final double percentage;
-	private final String grade;
+	protected final double totalMarks;
+	protected double percentage;
+	protected String grade;
 	private static int studentCount = 0;
 
 //	public Student(String name, int age, String contactNumber, String address, int rollNumber,
@@ -26,7 +26,7 @@ public final class Student extends Person {
 //		}
 //	}
 
-	private Student(StudentBuilder studentBuilder) {
+	protected Student(StudentBuilder studentBuilder) {
 
 		super(studentBuilder.name, studentBuilder.age, studentBuilder.contactNumber, studentBuilder.address);
 		this.rollNumber = studentBuilder.rollNumber;
@@ -34,8 +34,7 @@ public final class Student extends Person {
 		this.markObtainedInMaths = studentBuilder.markObtainedInMaths;
 		this.markObtainedInScience = studentBuilder.markObtainedInScience;
 		totalMarks = calculateTotalMarks();
-		percentage = calculatePercentage();
-		grade = calculateGrade();
+		
 		studentCount++;
 
 	}
@@ -76,12 +75,7 @@ public final class Student extends Person {
 
 	}
 
-	public final double calculatePercentage() {
-
-		double percentage = totalMarks / 3;
-		return percentage;
-
-	}
+	public abstract double calculatePercentage();
 
 	public final String calculateGrade() {
 		String grade;
@@ -230,7 +224,7 @@ public final class Student extends Person {
 		return studentCount;
 	}
 
-	public static class StudentBuilder {
+	public abstract static class StudentBuilder {
 
 		private String name;
 		private int age;
@@ -261,29 +255,24 @@ public final class Student extends Person {
 		}
 
 		public StudentBuilder withMarkObtainedInEnglish(double markObtainedInEnglish) {
-            if(validateMarks(markObtainedInEnglish))
-			this.markObtainedInEnglish = markObtainedInEnglish;
+			if (validateMarks(markObtainedInEnglish))
+				this.markObtainedInEnglish = markObtainedInEnglish;
 			return this;
 		}
 
 		public StudentBuilder withMarkObtainedInMaths(double markObtainedInMaths) {
-			if(validateMarks(markObtainedInMaths))
-			this.markObtainedInMaths = markObtainedInMaths;
+			if (validateMarks(markObtainedInMaths))
+				this.markObtainedInMaths = markObtainedInMaths;
 			return this;
 		}
 
 		public StudentBuilder withMarkObtainedInScience(double markObtainedInScience) {
-			if(validateMarks(markObtainedInScience))
-			this.markObtainedInScience = markObtainedInScience;
+			if (validateMarks(markObtainedInScience))
+				this.markObtainedInScience = markObtainedInScience;
 			return this;
 		}
 
-		public Student build() {
-
-			Student student = new Student(this);
-			return student;
-
-		}
+		public abstract Student build();
 
 		private boolean validateAge(int age) {
 
