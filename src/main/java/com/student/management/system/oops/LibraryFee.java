@@ -23,9 +23,9 @@ public class LibraryFee implements Payable {
 	}
 	
 	@Override
-	public boolean processPayment(String paymentMode) {
+	public boolean processPayment(PaymentMode paymentMode) {
 
-	    if (paymentMode.equalsIgnoreCase("BITCOIN")) {
+	    if (paymentMode == PaymentMode.BITCOIN) {
 
 	        System.out.println("Connecting to wallet! and transfering bitcoin");
 
