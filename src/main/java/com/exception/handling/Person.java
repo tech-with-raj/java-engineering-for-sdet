@@ -7,7 +7,7 @@ public class Person {
 
 	public Person(String name, int age) {
 		super();
-		if (validateAge(age)) {
+		if (validateAge(age) && validateName(name)) {
 			this.name = name;
 			this.age = age;
 		}
@@ -18,6 +18,7 @@ public class Person {
 	}
 
 	public void setName(String name) {
+		if(validateName(name))
 		this.name = name;
 	}
 
@@ -26,7 +27,20 @@ public class Person {
 	}
 
 	public void setAge(int age) {
+		if(validateAge(age))
 		this.age = age;
+	}
+
+	private boolean validateName(String name) {
+
+		if (name == null || name.trim().isEmpty()) {
+			throw new InvalidNameException("Name cannot be null or empty!!");
+		} else if (!(name.matches("[a-zA-Z\\s]+"))) {
+
+			throw new InvalidNameException("Name can only have Alphabets");
+		}
+			return true;
+		
 	}
 
 	private boolean validateAge(int age) {
@@ -34,7 +48,7 @@ public class Person {
 		if (age >= 18 && age <= 90) {
 			return true;
 		} else {
-			
+
 			try {
 				throw new InvalidAgeException("Invalid age");
 			} catch (InvalidAgeException e) {
@@ -42,7 +56,7 @@ public class Person {
 				e.printStackTrace();
 			}
 			return false;
-			
+
 		}
 	}
 
