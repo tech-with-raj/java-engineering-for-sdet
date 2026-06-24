@@ -15,9 +15,9 @@ public class BufferedWriterExample {
 		BufferedWriter bw;
 		
 		try {
-			fw = new FileWriter(myFile, true);
+			fw = new FileWriter(myFile,true);
 		    bw = new BufferedWriter(fw);
-			bw.write("Hello Java");
+			bw.write("Hello Java\n");
 			bw.close();
 
 		} catch (IOException e) {

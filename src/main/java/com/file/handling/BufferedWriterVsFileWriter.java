@@ -25,7 +25,7 @@ public class BufferedWriterVsFileWriter {
 		try {
 			fw = new FileWriter(file, true);
 			for (int i = 0; i < 100; i++) {
-				fw.write("Hello Java");
+				fw.write("Hello Java\n");
 			}
 			
 			fw.close();
@@ -54,7 +54,7 @@ public class BufferedWriterVsFileWriter {
 			fw = new FileWriter(myFile, true);
 			bw = new BufferedWriter(fw);
 			for (int i = 0; i < 100; i++) {
-			bw.write("Hello Java");
+			bw.write("Hello Java\n");
 			}
 			bw.close();
 
