@@ -1,5 +1,11 @@
 package com.student.management.system.oops;
 
+import com.student.management.system.exceptions.InvalidAddressException;
+import com.student.management.system.exceptions.InvalidAgeException;
+import com.student.management.system.exceptions.InvalidContactNumberException;
+import com.student.management.system.exceptions.InvalidEmpIdException;
+import com.student.management.system.exceptions.InvalidSubjectException;
+
 public class Teacher extends Person {
 
 	private String empID;
@@ -30,8 +36,8 @@ public class Teacher extends Person {
 		if (age >= 25 && age <= 65) {
 			return true;
 		} else {
-			System.err.println("Invalid teacher age!!");
-			return false;
+			throw new InvalidAgeException("Invalid teacher age!!");
+
 		}
 	}
 
@@ -40,8 +46,8 @@ public class Teacher extends Person {
 		if (contactNumber != null && contactNumber.matches("\\d{10}")) {
 			return true;
 		} else {
-			System.out.println("Invalid teacher contact number!!");
-			return false;
+			throw new InvalidContactNumberException("Invalid teacher contact number!!");
+
 		}
 
 	}
@@ -51,8 +57,7 @@ public class Teacher extends Person {
 		if (!address.isEmpty()) {
 			return true;
 		} else {
-			System.err.println("Invalid teacher address!!");
-			return false;
+			throw new InvalidAddressException("Invalid teacher address!!");
 		}
 	}
 
@@ -62,8 +67,9 @@ public class Teacher extends Person {
 
 			return true;
 		} else {
-			System.err.println("Invalid teacher empID!!");
-			return false;
+
+			throw new InvalidEmpIdException("Invalid teacher empID!!");
+
 		}
 
 	}
@@ -74,8 +80,8 @@ public class Teacher extends Person {
 
 			return true;
 		} else {
-			System.err.println("Invalid teacher subject!!");
-			return false;
+			throw new InvalidSubjectException("Invalid teacher subject!!");
+			
 		}
 	}
 
@@ -84,8 +90,7 @@ public class Teacher extends Person {
 		if (yearsOfExperience >= 0 && yearsOfExperience <= 40) {
 			return true;
 		} else {
-			System.err.println("Invalid teacher experience!!");
-			return false;
+			throw new IllegalArgumentException("Invalid teacher experience!!");
 		}
 	}
 

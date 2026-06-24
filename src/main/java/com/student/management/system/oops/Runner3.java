@@ -13,7 +13,7 @@ public class Runner3 {
          s1.displayStudentInfo();
 		
          
-         Student s2 = new SportStudent.SportStudentBuilder("Kajal", 20, "9025394099", "Pune")
+         Student s2 = new SportStudent.SportStudentBuilder("Kajal", 20, "9025394099", "")
         		 .withSportsScore(8)
         		 .withMarkObtainedInEnglish(98)
         		 .withMarkObtainedInMaths(100)

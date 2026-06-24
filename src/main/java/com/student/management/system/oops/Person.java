@@ -1,16 +1,20 @@
 package com.student.management.system.oops;
 
+import com.student.management.system.exceptions.InvalidAddressException;
+import com.student.management.system.exceptions.InvalidAgeException;
+import com.student.management.system.exceptions.InvalidContactNumberException;
+
 public abstract class Person {
 
 	protected String name;
 	protected int age;
 	protected String contactNumber;
 	protected String address;
-	private static int personCount=0;
+	private static int personCount = 0;
 
 	public Person(String name, int age, String contactNumber, String address) {
 
-		if (validateAddress(address) && validateContactNumber(contactNumber)) {
+		if (validateAge(age) && validateAddress(address) && validateContactNumber(contactNumber)) {
 			this.name = name;
 			this.age = age;
 			this.contactNumber = contactNumber;
@@ -18,7 +22,7 @@ public abstract class Person {
 			personCount++;
 		}
 
-			}
+	}
 
 	public String getName() {
 		return name;
@@ -53,6 +57,14 @@ public abstract class Person {
 		if (validateAddress(address))
 			this.address = address;
 	}
+	
+	private boolean validateAge(int age) {
+		if(age >= 18 && age <= 23) {
+			return true;
+		}else {
+			throw new InvalidAgeException("Age should be within 18 to 23");
+		}
+	}
 
 	public boolean validateContactNumber(String contactNumber) {
 
@@ -60,8 +72,7 @@ public abstract class Person {
 
 			return true;
 		} else {
-			System.err.println("Invalid contact number");
-			return false;
+			throw new InvalidContactNumberException ("Invalid contact number");
 		}
 
 	}
@@ -72,8 +83,8 @@ public abstract class Person {
 
 			return true;
 		} else {
-			System.err.println("Invalid person address");
-			return false;
+			throw new InvalidAddressException("Address can't be empty!!!");
+
 		}
 
 	}

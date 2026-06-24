@@ -2,6 +2,11 @@ package com.student.management.system.oops;
 
 import java.util.Objects;
 
+import com.student.management.system.exceptions.InvalidAddressException;
+import com.student.management.system.exceptions.InvalidAgeException;
+import com.student.management.system.exceptions.InvalidContactNumberException;
+import com.student.management.system.exceptions.InvalidMarksException;
+
 public abstract class Student extends Person {
 
 	private final int rollNumber;
@@ -34,7 +39,7 @@ public abstract class Student extends Person {
 		this.markObtainedInMaths = studentBuilder.markObtainedInMaths;
 		this.markObtainedInScience = studentBuilder.markObtainedInScience;
 		totalMarks = calculateTotalMarks();
-		
+
 		studentCount++;
 
 	}
@@ -279,8 +284,7 @@ public abstract class Student extends Person {
 			if (age >= 10 && age <= 25) {
 				return true;
 			} else {
-				System.err.println("Invalid age for student!!");
-				return false;
+				throw new InvalidAgeException("Invalid age for student!!");
 			}
 		}
 
@@ -289,15 +293,13 @@ public abstract class Student extends Person {
 			if (contactNumber != null && contactNumber.matches("\\d{10}")) {
 				return true;
 			} else {
-				System.err.println("Invalid contact number for student!!");
-				return false;
+				throw new InvalidContactNumberException("Invalid contact number for student!!");
 			}
 		}
 
 		private boolean validateAddress(String address) {
 			if (address.isEmpty()) {
-				System.err.println("Invalid address for student!!");
-				return false;
+				throw new InvalidAddressException("Invalid address for student!!");
 			} else {
 
 				return true;
@@ -310,8 +312,7 @@ public abstract class Student extends Person {
 			if (rollNumber > 0) {
 				return true;
 			} else {
-				System.err.println("Invalid Roll Number for student!!");
-				return false;
+				throw new IllegalArgumentException("Invalid Roll Number for student!!");
 			}
 		}
 
@@ -320,8 +321,7 @@ public abstract class Student extends Person {
 			if (mark >= 0 && mark <= 100) {
 				return true;
 			} else {
-				System.err.println("Invalid marks for student!!");
-				return false;
+				throw new InvalidMarksException("Invalid marks for student!!");
 			}
 		}
 	}
