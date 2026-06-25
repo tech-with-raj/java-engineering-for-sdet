@@ -26,11 +26,11 @@ public class BufferedReaderExample {
 		} catch (IOException e) {
 
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				br.close();
 			} catch (IOException e) {
-				
+
 				e.printStackTrace();
 			}
 		}
