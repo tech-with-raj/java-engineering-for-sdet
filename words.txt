@@ -1,0 +1,3 @@
+Java programming is fun.
+Finding the longest word is interesting
+Let's code more!
