@@ -31,7 +31,7 @@ public class Runner3 {
 					.withMarkObtainedInEnglish(98).withMarkObtainedInMaths(100).withMarkObtainedInScience(89).build();
 
 //	         s2.displayStudentInfo();
-			
+            
 			Student s3 = new SportStudent.SportStudentBuilder("Rohan", 20, "9025394090", "Kolkata").withSportsScore(8)
 					.withMarkObtainedInEnglish(98).withMarkObtainedInMaths(100).withMarkObtainedInScience(89).build();
 
