@@ -7,7 +7,7 @@ public class SportStudent extends Student {
 	private SportStudent(StudentBuilder studentBuilder) {
 		super(studentBuilder);
 
-		this.sportsScore = ((SportStudentBuilder)studentBuilder).sportsScore;
+		this.sportsScore = ((SportStudentBuilder) studentBuilder).sportsScore;
 		percentage = calculatePercentage();
 		grade = calculateGrade();
 	}
@@ -15,12 +15,10 @@ public class SportStudent extends Student {
 	@Override
 	public double calculatePercentage() {
 
-		double percentage = ((totalMarks/3.0)*0.8)+(sportsScore*0.2);
+		double percentage = ((totalMarks / 3.0) * 0.8) + (sportsScore * 0.2);
 		return percentage;
-		
+
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -28,8 +26,6 @@ public class SportStudent extends Student {
 				+ ", grade=" + grade + ", name=" + name + ", age=" + age + ", contactNumber=" + contactNumber
 				+ ", address=" + address + "]";
 	}
-
-
 
 	public static class SportStudentBuilder extends StudentBuilder {
 
