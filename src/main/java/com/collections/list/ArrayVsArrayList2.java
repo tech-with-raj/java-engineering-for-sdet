@@ -2,7 +2,6 @@ package com.collections.list;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 public class ArrayVsArrayList2 {
