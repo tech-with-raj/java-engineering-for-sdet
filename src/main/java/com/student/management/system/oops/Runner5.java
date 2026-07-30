@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -140,7 +141,30 @@ public class Runner5 {
 		try {
 			fos = new FileInputStream(file);
 			ois = new ObjectInputStream(fos);
-			studentData = (ArrayList<Student>) ois.readObject();
+			Object obj = ois.readObject();
+
+			Student[] data;
+
+			if (obj instanceof Student[]) {
+
+				data = (Student[]) obj;
+
+				for (Student s : data) {
+
+					studentData.add(s);
+				}
+				serializeData(studentData);
+
+			} else if (obj instanceof ArrayList<?>) {
+
+				for (Object o : (ArrayList<?>) obj) {
+
+					if (o instanceof Student) {
+
+						studentData.add((Student) o);
+					}
+				}
+			}
 
 		} catch (IOException | ClassNotFoundException e) {
 
